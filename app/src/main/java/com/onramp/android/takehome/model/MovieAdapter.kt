@@ -11,11 +11,14 @@ import com.onramp.android.takehome.R
 
 class MovieAdapter(private val movieList:List<movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
+
+
     //extends the view holder
     class MovieViewHolder(movieView:View) : RecyclerView.ViewHolder(movieView){
         val imageView: ImageView = movieView.findViewById(R.id.image_view)
         val textview: TextView = movieView.findViewById(R.id.text_view)
         val button: Button = movieView.findViewById(R.id.button)
+
 
     }
 
