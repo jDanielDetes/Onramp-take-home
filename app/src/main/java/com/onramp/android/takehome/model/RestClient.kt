@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RestClient {
 
-    private val BASE_URL= "https://api.themoviedb.org/3/movie/now_playing?api_key=69da287f8d942bd5ac2693404c94e0da&language=en-US&page=1"
+    private val BASE_URL= "https://api.themoviedb.org"
     private var mRetrofit: Retrofit? = null
 
     val client: Retrofit

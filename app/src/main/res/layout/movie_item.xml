@@ -40,6 +40,18 @@
             app:layout_constraintHorizontal_bias="0.032"
             app:layout_constraintStart_toEndOf="@+id/image_view"
             tools:layout_editor_absoluteY="16dp" />
+
+
+        <TextView
+            android:id="@+id/text_view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie title"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.538"
+            app:layout_constraintStart_toEndOf="@+id/image_view"
+            tools:layout_editor_absoluteY="32dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

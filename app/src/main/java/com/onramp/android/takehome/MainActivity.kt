@@ -1,45 +1,76 @@
 package com.onramp.android.takehome
 
-import android.graphics.Movie
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import android.view.MenuItem
+
+import android.util.Log
+
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.onramp.android.takehome.model.MovieAdapter
-import com.onramp.android.takehome.model.movie
+import com.onramp.android.takehome.model.*
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Callback
+import com.onramp.android.takehome.model.movieList
 
 class MainActivity : AppCompatActivity() {
+    private var mApiService: ApiService? = null
+
+    private var mAdapter: MovieAdapter? = null
+    private var movies: MutableList<moveTest> = ArrayList()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val movieList = placeholderList(100)
 
-        recycle_view.adapter = MovieAdapter(movieList)
+         mAdapter = com.onramp.android.takehome.model.MovieAdapter(movies,R.layout.movie_item)
         recycle_view.layoutManager = LinearLayoutManager(this)
-        recycle_view.setHasFixedSize(true)
+
+
+         mApiService = RestClient.client.create(ApiService::class.java);
+        recycle_view!!.adapter=mAdapter
+        fetchMovieList()
     }
 
-        private fun placeholderList(size: Int):List<movie> {
-            val list = ArrayList<movie>()
+//        private fun placeholderList(size: Int):List<movie> {
+//            val list = ArrayList<movie>()
+//
+//            for(i in 0 until size) {
+//                val drawable = when (i % 3) {
+//                    1->R.drawable.placeholder
+//                    else -> R.drawable.ic_launcher_background
+//                }
+//
+//                val item = movie(drawable,"Title: $1","www.google.com")
+//                list += item
+//            }
+//            return list
+//        }
 
-            for(i in 0 until size) {
-                val drawable = when (i % 3) {
-                    1->R.drawable.placeholder
-                    else -> R.drawable.ic_launcher_background
-                }
+            private fun fetchMovieList(){
+                val call = mApiService!!.fetchMovies("test")
+                call.enqueue(object : Callback<movieList> {
+                    override  fun onResponse(call: retrofit2.Call<movieList>, response: retrofit2.Response<movieList>){
 
-                val item = movie(drawable,"Title: $1","www.google.com")
-                list += item
+
+                        Log.d(TAG,"check:" +response.body()!!.results!!.size)
+                        val moviesRes= response.body()
+                        if(moviesRes != null) {
+                            movies.addAll(moviesRes.results!!)
+                            mAdapter!!.notifyDataSetChanged()
+                        }
+
+                    }
+
+                    override fun onFailure(call: retrofit2.Call<movieList>, t: Throwable) {
+                        Log.e(TAG,"Error :" + t.localizedMessage)
+                    }
+                })
             }
-            return list
-        }
 
-
+            companion object{
+                private val TAG = MainActivity::class.java.simpleName
+            }
 
 }
