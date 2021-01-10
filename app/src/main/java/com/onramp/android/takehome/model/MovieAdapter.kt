@@ -1,5 +1,8 @@
 package com.onramp.android.takehome.model
 
+import android.app.Activity
+import android.content.Context
+import android.graphics.Movie
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +10,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.onramp.android.takehome.MainActivity
 import com.onramp.android.takehome.R
 
 class MovieAdapter(private val movieList:List<moveTest>, private val mrow: Int) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
@@ -38,6 +43,9 @@ class MovieAdapter(private val movieList:List<moveTest>, private val mrow: Int) 
         holder.textview?.text=currentMovie.original_title
         holder.textview2?.text=currentMovie.release_date
 
+        Glide.with(holder.itemView.context)
+                .load("https://image.tmdb.org/t/p/w1280/" + currentMovie.poster_path)
+                .into(holder.imageView)
 
     }
 }

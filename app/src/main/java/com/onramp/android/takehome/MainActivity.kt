@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onFailure(call: retrofit2.Call<movieList>, t: Throwable) {
                         Log.e(TAG,"Error :" + t.localizedMessage)
+
+
                     }
                 })
             }
