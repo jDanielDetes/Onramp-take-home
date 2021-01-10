@@ -5,12 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.util.Log
+import android.widget.Button
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
+import com.google.android.youtube.player.YouTubePlayerSupportFragmentX
+import com.google.android.youtube.player.internal.a
 import com.onramp.android.takehome.model.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Callback
 import com.onramp.android.takehome.model.movieList
+import kotlinx.android.synthetic.main.youtube_player.*
 
 class MainActivity : AppCompatActivity() {
     private var mApiService: ApiService? = null
@@ -23,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val click_me = findViewById<Button>(R.id.button1)
+
 
          mAdapter = com.onramp.android.takehome.model.MovieAdapter(movies,R.layout.movie_item)
         recycle_view.layoutManager = LinearLayoutManager(this)
@@ -31,22 +39,32 @@ class MainActivity : AppCompatActivity() {
          mApiService = RestClient.client.create(ApiService::class.java);
         recycle_view!!.adapter=mAdapter
         fetchMovieList()
+
+
+            var youtube_frag = supportFragmentManager.findFragmentById(R.id.yt_fragment)
+                    as YouTubePlayerSupportFragmentX
+            youtube_frag.initialize("AIzaSyB3OeCeoOyrYL7zVrlkrgZR2ZqeH30SDhc", object : YouTubePlayer.OnInitializedListener {
+                override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
+                    if(player == null) return
+                    if(wasRestored)
+                        player.play()
+                    else{
+                        player.cueVideo("OIxASOOTtPM")
+                        player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT)
+                    }
+                }
+
+                override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
+                    TODO("Not yet implemented")
+                }
+
+
+            })
+
+
     }
 
-//        private fun placeholderList(size: Int):List<movie> {
-//            val list = ArrayList<movie>()
-//
-//            for(i in 0 until size) {
-//                val drawable = when (i % 3) {
-//                    1->R.drawable.placeholder
-//                    else -> R.drawable.ic_launcher_background
-//                }
-//
-//                val item = movie(drawable,"Title: $1","www.google.com")
-//                list += item
-//            }
-//            return list
-//        }
+
 
             private fun fetchMovieList(){
                 val call = mApiService!!.fetchMovies("test")
@@ -70,6 +88,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 })
             }
+
+
 
             companion object{
                 private val TAG = MainActivity::class.java.simpleName

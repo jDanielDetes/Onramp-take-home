@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
+    <fragment
+        android:id="@+id/yt_fragment"
+        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </fragment>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view"
         android:layout_width="match_parent"
@@ -15,8 +27,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/movie_item"/>
-    <TextView
+    <Button
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hfnsonfmasdk"/>
+        android:text="press me"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

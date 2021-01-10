@@ -39,6 +39,9 @@ dependencies {
     //glide for images
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //youtube api
+    implementation files('libs/YoutubeAndroidPlayerApi.jar')
 }
 repositories {
     maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
