@@ -4,9 +4,9 @@
         android:insetBottom="-4dp">
 
         <shape android:shape="rectangle">
-            <solid android:color="#EC0D0D" />
-            <stroke android:width="4dp" android:color="#000000" />
-            <corners android:radius="40dp" />
+            <solid android:color="#0d335d" />
+
+            <corners android:radius="50dp" />
         </shape>
 
     </inset>
