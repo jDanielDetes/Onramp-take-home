@@ -6,6 +6,7 @@ import android.os.Bundle
 
 import android.util.Log
 import android.widget.Button
+import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -26,11 +27,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val click_me = findViewById<Button>(R.id.button1)
+
 
 
          mAdapter = com.onramp.android.takehome.model.MovieAdapter(movies,R.layout.movie_item)
-        recycle_view.layoutManager = LinearLayoutManager(this)
+        recycle_view.layoutManager = GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false)
 
 
          mApiService = RestClient.client.create(ApiService::class.java);

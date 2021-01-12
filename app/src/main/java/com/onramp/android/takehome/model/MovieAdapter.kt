@@ -20,7 +20,7 @@ class MovieAdapter(private val movieList:List<movie>, private val mrow: Int) : R
     class MovieViewHolder(val movieView:View, var movieData: movie? = null) : RecyclerView.ViewHolder(movieView){
         val imageView: ImageView = movieView.findViewById(R.id.image_view)
         val textview: TextView = movieView.findViewById(R.id.text_view)
-        val button: Button = movieView.findViewById(R.id.button)
+//        val button: Button = movieView.findViewById(R.id.button)
         val textview2: TextView = movieView.findViewById(R.id.text_view2)
 
         companion object{

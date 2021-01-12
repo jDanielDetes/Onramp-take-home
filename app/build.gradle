@@ -46,6 +46,9 @@ dependencies {
     //youtube api
     implementation files('libs/YoutubeAndroidPlayerApi.jar')
 
+    //material UI
+    implementation 'com.google.android.material:material:1.2.1'
+
     //anko
     implementation 'org.jetbrains.anko:anko-common:0.9'
 }
