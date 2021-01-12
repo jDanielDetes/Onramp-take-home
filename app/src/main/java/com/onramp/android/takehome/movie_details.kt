@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 
 import com.onramp.android.takehome.model.MovieAdapter
+import kotlinx.android.synthetic.main.activity_movie_details.*
 import org.w3c.dom.Text
 
 
@@ -17,6 +18,12 @@ class movie_details() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
+
+        rate_movie_button.setOnClickListener {
+            var dialog_frag = RatingFragment()
+
+            dialog_frag.show(supportFragmentManager,"rating")
+        }
 
 
             //Recieve intents
