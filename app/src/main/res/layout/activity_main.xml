@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <fragment
-        android:id="@+id/yt_fragment"
-        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </fragment>
 
 
     <androidx.recyclerview.widget.RecyclerView

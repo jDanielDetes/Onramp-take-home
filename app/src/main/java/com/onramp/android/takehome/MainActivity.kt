@@ -8,21 +8,18 @@ import android.util.Log
 import android.widget.Button
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerSupportFragmentX
-import com.google.android.youtube.player.internal.a
+
 import com.onramp.android.takehome.model.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Callback
 import com.onramp.android.takehome.model.movieList
-import kotlinx.android.synthetic.main.youtube_player.*
+
 
 class MainActivity : AppCompatActivity() {
     private var mApiService: ApiService? = null
 
     private var mAdapter: MovieAdapter? = null
-    private var movies: MutableList<moveTest> = ArrayList()
+    private var movies: MutableList<movie> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,25 +38,7 @@ class MainActivity : AppCompatActivity() {
         fetchMovieList()
 
 
-            var youtube_frag = supportFragmentManager.findFragmentById(R.id.yt_fragment)
-                    as YouTubePlayerSupportFragmentX
-            youtube_frag.initialize("AIzaSyB3OeCeoOyrYL7zVrlkrgZR2ZqeH30SDhc", object : YouTubePlayer.OnInitializedListener {
-                override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
-                    if(player == null) return
-                    if(wasRestored)
-                        player.play()
-                    else{
-                        player.cueVideo("OIxASOOTtPM")
-                        player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT)
-                    }
-                }
 
-                override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-                    TODO("Not yet implemented")
-                }
-
-
-            })
 
 
     }

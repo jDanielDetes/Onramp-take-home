@@ -1,5 +1,5 @@
 package com.onramp.android.takehome.model
 
 class movieList {
-    val results: List<moveTest>? = null
+    val results: List<movie>? = null
 }

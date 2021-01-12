@@ -45,6 +45,9 @@ dependencies {
 
     //youtube api
     implementation files('libs/YoutubeAndroidPlayerApi.jar')
+
+    //anko
+    implementation 'org.jetbrains.anko:anko-common:0.9'
 }
 repositories {
     maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }

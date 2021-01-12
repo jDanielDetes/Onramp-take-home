@@ -7,6 +7,16 @@
     tools:context=".movie_details">
 
 
+    <fragment
+        android:id="@+id/yt_fragment"
+        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </fragment>
     <TextView
         android:id="@+id/tv_test"
         android:layout_width="0dp"
@@ -15,4 +25,10 @@
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="124dp" />
+
+    <Button
+        android:id="@+id/testbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tesstt"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
