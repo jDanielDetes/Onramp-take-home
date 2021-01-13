@@ -22,63 +22,55 @@ class movie_details() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
+        fun saveData() {
+            val insertedText = et_text.text.toString()
+            tv_text.text = insertedText
 
-
-
-
-        fun saveData(){
-            val insertedText= et_text.text.toString()
-            tv_text.text=insertedText
-
-
-            val sharedPreferences = getSharedPreferences("shared",Context.MODE_PRIVATE)
+            val sharedPreferences = getSharedPreferences("shared", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
-            editor.apply{
-                putString("key",insertedText)
+            editor.apply {
+                putString("key", insertedText)
             }.apply()
 
-            Toast.makeText(this,"data saved",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "data saved", Toast.LENGTH_LONG).show()
         }
-        fun loadData(){
-            val sharedPreferences = getSharedPreferences("shared",Context.MODE_PRIVATE)
-            val savedString= sharedPreferences.getString("key",null)
 
-            tv_text.text= savedString
+        fun loadData() {
+            val sharedPreferences = getSharedPreferences("shared", Context.MODE_PRIVATE)
+            val savedString = sharedPreferences.getString("key", null)
+
+            tv_text.text = savedString
         }
         loadData()
-
 
         rate_movie_button.setOnClickListener {
             var dialog_frag = RatingFragment()
 
-            dialog_frag.show(supportFragmentManager,"rating")
+            dialog_frag.show(supportFragmentManager, "rating")
 
         }
         note_submit.setOnClickListener {
             saveData()
         }
-            //Recieve intents
-       val navtitle= intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_TITLE_KEY)
-        supportActionBar?.title= navtitle //Assigns navbar with movie title
+        //Recieve intents
+        val navtitle = intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_TITLE_KEY)
+        supportActionBar?.title = navtitle //Assigns navbar with movie title
         val overview = intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_OVERVIEW_KEY)
-        val movieId= intent.getIntExtra(MovieAdapter.MovieViewHolder.MOVIE_ID_KEY, -1)
-        val movieDetailUrl= "https://api.themoviedb.org/3/movie/$movieId?api_key=69da287f8d942bd5ac2693404c94e0da&language=en-US\""
-            println(movieDetailUrl)
-        val release_date = intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_RELEASE_KEY)
-        val movie_Poster =  intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_POSTER_KEY)
+        val movieId = intent.getIntExtra(MovieAdapter.MovieViewHolder.MOVIE_ID_KEY, -1)
+        val movieDetailUrl = "https://api.themoviedb.org/3/movie/$movieId?api_key=69da287f8d942bd5ac2693404c94e0da&language=en-US\""
+        println(movieDetailUrl)
         val movie_backdrop = intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_BACKDROP_KEY)
-        val rating = intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_VOTE_KEY)
 
         Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w1280/" + movie_backdrop)
                 .into(findViewById(R.id.imageView2))
 
 
-        val overView:TextView =findViewById(R.id.overview)
-        val titleView:TextView =findViewById(R.id.Title)
+        val overView: TextView = findViewById(R.id.overview)
+        val titleView: TextView = findViewById(R.id.Title)
 
         overView.text = overview
-        titleView.text=navtitle
+        titleView.text = navtitle
 
         var reminderSet = true
         service_button.setOnClickListener {
@@ -89,18 +81,16 @@ class movie_details() : AppCompatActivity() {
                 service_button.setBackgroundColor(Color.RED)
             } else {
                 MovieReminderService.stopService(this)
-                reminderSet= true
+                reminderSet = true
                 service_button.setText("Add Reminder")
-                service_button.setBackgroundColor(Color.rgb(17,105,142))
+                service_button.setBackgroundColor(Color.rgb(17, 105, 142))
             }
         }
 
 
-
-
     }
 
-    }
+}
 
 
 

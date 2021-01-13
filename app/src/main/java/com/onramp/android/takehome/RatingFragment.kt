@@ -11,21 +11,14 @@ import kotlinx.android.synthetic.main.fragment_rating.*
 import kotlinx.android.synthetic.main.fragment_rating.view.*
 import java.util.zip.Inflater
 
-class RatingFragment:DialogFragment() {
-
-
-
-
-
-
+class RatingFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var rootView: View= inflater.inflate(R.layout.fragment_rating,container,false)
+        var rootView: View = inflater.inflate(R.layout.fragment_rating, container, false)
 
-            rootView.cancel_rating_Button.setOnClickListener {
-                dismiss()
-            }
-
+        rootView.cancel_rating_Button.setOnClickListener {
+            dismiss()
+        }
 
         rootView.submit_rating_Button.setOnClickListener {
             val selectedID = radioGroup.checkedRadioButtonId
@@ -33,8 +26,8 @@ class RatingFragment:DialogFragment() {
 
             var ratingResult = radio.text.toString()
 
-                last_rating.setText(ratingResult)
-            Toast.makeText(context,"You rated: $ratingResult", Toast.LENGTH_LONG).show()
+            last_rating.setText(ratingResult)
+            Toast.makeText(context, "You rated: $ratingResult", Toast.LENGTH_LONG).show()
 
             dismiss()
         }

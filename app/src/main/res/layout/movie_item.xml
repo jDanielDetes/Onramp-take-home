@@ -59,17 +59,8 @@
                         android:layout_height="wrap_content"
                         android:text="TITLE"
                         android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="#FFFFFF"/>
-
-                    <TextView
-                        android:id="@+id/text_view2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="twa2"
-                        android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="#FFFFFF"
-                        />
+                        android:layout_marginLeft="25dp"/>
 
 
                 </LinearLayout>
