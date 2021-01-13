@@ -1,16 +1,16 @@
 package com.onramp.android.takehome
 
-import android.app.DownloadManager
-import android.content.Intent
+
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
 import com.onramp.android.takehome.model.MovieAdapter
 import kotlinx.android.synthetic.main.activity_movie_details.*
-import org.w3c.dom.Text
+
 
 
 class movie_details() : AppCompatActivity() {
@@ -19,11 +19,14 @@ class movie_details() : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
 
 
+
         rate_movie_button.setOnClickListener {
             var dialog_frag = RatingFragment()
 
             dialog_frag.show(supportFragmentManager,"rating")
         }
+
+
 
 
             //Recieve intents
@@ -49,7 +52,20 @@ class movie_details() : AppCompatActivity() {
         overView.text = overview
         titleView.text=navtitle
 
-
+        var reminderSet = true
+        service_button.setOnClickListener {
+            if (reminderSet) {
+                MovieReminderService.startService(this, "Reminder to watch ${navtitle} ")
+                reminderSet = false
+                service_button.setText("Remove Reminder")
+                service_button.setBackgroundColor(Color.RED)
+            } else {
+                MovieReminderService.stopService(this)
+                reminderSet= true
+                service_button.setText("Add Reminder")
+                service_button.setBackgroundColor(Color.rgb(17,105,142))
+            }
+        }
 
 
 
