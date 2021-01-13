@@ -13,6 +13,12 @@ import java.util.zip.Inflater
 
 class RatingFragment:DialogFragment() {
 
+
+
+
+
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var rootView: View= inflater.inflate(R.layout.fragment_rating,container,false)
 
@@ -20,15 +26,22 @@ class RatingFragment:DialogFragment() {
                 dismiss()
             }
 
+
         rootView.submit_rating_Button.setOnClickListener {
             val selectedID = radioGroup.checkedRadioButtonId
             val radio = rootView.findViewById<RadioButton>(selectedID)
 
             var ratingResult = radio.text.toString()
 
+                last_rating.setText(ratingResult)
             Toast.makeText(context,"You rated: $ratingResult", Toast.LENGTH_LONG).show()
+
             dismiss()
         }
         return rootView
+
+
     }
+
+
 }

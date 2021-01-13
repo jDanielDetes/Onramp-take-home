@@ -1,16 +1,20 @@
 package com.onramp.android.takehome
 
 
+import android.content.Context
 import android.graphics.Color
+import android.media.Rating
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.RadioButton
 
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 
 import com.onramp.android.takehome.model.MovieAdapter
 import kotlinx.android.synthetic.main.activity_movie_details.*
-
+import kotlinx.android.synthetic.main.fragment_rating.*
 
 
 class movie_details() : AppCompatActivity() {
@@ -20,15 +24,39 @@ class movie_details() : AppCompatActivity() {
 
 
 
+
+
+        fun saveData(){
+            val insertedText= et_text.text.toString()
+            tv_text.text=insertedText
+
+
+            val sharedPreferences = getSharedPreferences("shared",Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.apply{
+                putString("key",insertedText)
+            }.apply()
+
+            Toast.makeText(this,"data saved",Toast.LENGTH_LONG).show()
+        }
+        fun loadData(){
+            val sharedPreferences = getSharedPreferences("shared",Context.MODE_PRIVATE)
+            val savedString= sharedPreferences.getString("key",null)
+
+            tv_text.text= savedString
+        }
+        loadData()
+
+
         rate_movie_button.setOnClickListener {
             var dialog_frag = RatingFragment()
 
             dialog_frag.show(supportFragmentManager,"rating")
+
         }
-
-
-
-
+        note_submit.setOnClickListener {
+            saveData()
+        }
             //Recieve intents
        val navtitle= intent.getStringExtra(MovieAdapter.MovieViewHolder.MOVIE_TITLE_KEY)
         supportActionBar?.title= navtitle //Assigns navbar with movie title
